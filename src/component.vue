@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div
     class="elder-loader"
     :class="[
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import Icon from '@kvass/vue2-icon/src/Legacy'
+import Icon from '@kvass/vue2-icon'
 import { Options } from '../index'
 import { iconBinding, isPromise } from './utils'
 import SlotHandler from './SlotHandler'
@@ -239,15 +239,12 @@ $variables: (
   }
 
   &__loading-icon {
+    --kvass-icon-spin-duration: #{GetVariable('loader-animation-duration')};
     color: GetVariable('primary');
   }
 
   &__loading-message {
     margin-top: 0.5rem;
-  }
-
-  .fa-spin {
-    animation-duration: GetVariable('loader-animation-duration');
   }
 }
 </style>
