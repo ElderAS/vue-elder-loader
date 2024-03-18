@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div
     class="elder-loader"
     :class="[
@@ -43,11 +43,7 @@
             <SlotHandler :value="content.messages.error" :reset="reset" :error="error" />
           </slot>
           <slot name="loader" v-if="isLoading" :content="content">
-            <FontAwesomeIcon
-              class="elder-loader__loading-icon"
-              v-bind="content.icon"
-              spin
-            />
+            <Icon class="elder-loader__loading-icon" v-bind="content.icon" spin />
             <div class="elder-loader__loading-message">
               <slot name="message">{{ content.messages.loading }}</slot>
             </div>
@@ -59,11 +55,10 @@
 </template>
 
 <script>
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+import Icon from '@kvass/vue2-icon'
 import { Options } from '../index'
 import { iconBinding, isPromise } from './utils'
 import SlotHandler from './SlotHandler'
-import './icons'
 
 export default {
   props: {
@@ -165,7 +160,7 @@ export default {
     },
   },
   components: {
-    FontAwesomeIcon,
+    Icon,
     SlotHandler,
   },
 }
@@ -244,15 +239,12 @@ $variables: (
   }
 
   &__loading-icon {
+    --kvass-icon-spin-duration: #{GetVariable('loader-animation-duration')};
     color: GetVariable('primary');
   }
 
   &__loading-message {
     margin-top: 0.5rem;
-  }
-
-  .fa-spin {
-    animation-duration: GetVariable('loader-animation-duration');
   }
 }
 </style>
